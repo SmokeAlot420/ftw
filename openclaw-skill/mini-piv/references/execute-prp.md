@@ -36,9 +36,8 @@ PRPs enable working code on the first attempt through:
 
 2. **ULTRATHINK & Plan**
    - Create comprehensive implementation plan following the PRP's task order
-   - Break down into clear tasks and track them using TaskCreate/TaskUpdate
+   - Break down into clear tasks and track progress as you work through each one
    - Follow the patterns referenced in the PRP
-   - Be sure to update each task as you work on it and complete it
    - Use specific file paths, class names, and method signatures from PRP context
    - Never guess - always verify the codebase patterns and examples referenced in the PRP yourself
 

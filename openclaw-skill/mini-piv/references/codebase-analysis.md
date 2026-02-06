@@ -152,6 +152,6 @@ Before completing, verify:
 This process can be invoked:
 1. **Directly**: As a standalone codebase analysis task
 2. **Via generate-prp**: Referenced during PRP generation
-3. **Via Task tool**: Spawn as subagent for parallel research
+3. **Via sessions_spawn**: Spawn as sub-agent for research
 
 The analysis output feeds directly into PRP creation, providing the context needed for one-pass implementation success.

@@ -35,6 +35,8 @@ Same quality pipeline (Execute → Validate → Debug), but starts from a quick 
 
 **You are the orchestrator** - stay lean, spawn fresh sub-agents for heavy lifting.
 
+**Sub-agent spawning:** Use the `sessions_spawn` tool to create fresh sub-agent sessions. Each spawn is non-blocking — you'll receive results via an announce step. Wait for each agent's results before proceeding to the next step.
+
 ---
 
 ## Required Reading by Role
@@ -110,7 +112,7 @@ feature:
 
 ## Step 2: Research & PRP Generation
 
-Spawn a **fresh sub-agent** (Task tool, `general-purpose`):
+Spawn a **fresh sub-agent** using `sessions_spawn`:
 
 ```
 MINI PIV: RESEARCH & PRP GENERATION
@@ -150,7 +152,7 @@ Do BOTH steps yourself. DO NOT spawn sub-agents.
 
 ## Step 3: Spawn EXECUTOR
 
-Spawn fresh sub-agent (Task tool, `general-purpose`):
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 EXECUTOR MISSION - Mini PIV
@@ -170,7 +172,7 @@ Output EXECUTION SUMMARY.
 
 ## Step 4: Spawn VALIDATOR
 
-Spawn fresh sub-agent:
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 VALIDATOR MISSION - Mini PIV
@@ -192,7 +194,7 @@ Output VERIFICATION REPORT with Grade, Checks, Gaps.
 
 ## Step 5: Debug Loop (Max 3 iterations)
 
-Spawn fresh sub-agent:
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 DEBUGGER MISSION - Mini PIV - Iteration {I}

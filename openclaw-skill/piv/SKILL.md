@@ -79,6 +79,8 @@ Else:
 
 You are the **orchestrator**. You stay lean and manage workflow. You DO NOT execute PRPs yourself - you spawn specialized sub-agents with fresh context for each task.
 
+**Sub-agent spawning:** Use the `sessions_spawn` tool to create fresh sub-agent sessions. Each spawn is non-blocking — you'll receive results via an announce step. Wait for each agent's results before proceeding to the next step.
+
 ---
 
 ## Project Setup (piv-init)
@@ -103,7 +105,7 @@ Check for existing PRP:
 ls -la PROJECT_PATH/PRPs/ 2>/dev/null | grep -i "phase.*N\|pN\|p-N"
 ```
 
-If no PRP exists, spawn a **fresh sub-agent** (Task tool, `general-purpose`) to do both codebase analysis and PRP generation in sequence:
+If no PRP exists, spawn a **fresh sub-agent** using `sessions_spawn` to do both codebase analysis and PRP generation in sequence:
 
 ```
 RESEARCH & PRP GENERATION MISSION - Phase {N}
@@ -129,7 +131,7 @@ Do BOTH steps yourself. DO NOT spawn sub-agents.
 
 ### Step 2: Spawn EXECUTOR
 
-Spawn a fresh sub-agent (Task tool, `general-purpose`):
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 EXECUTOR MISSION - Phase {N}
@@ -147,7 +149,7 @@ Output EXECUTION SUMMARY with Status, Files, Tests, Issues.
 
 ### Step 3: Spawn VALIDATOR
 
-Spawn a fresh sub-agent (Task tool, `general-purpose`):
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 VALIDATOR MISSION - Phase {N}
@@ -167,7 +169,7 @@ Output VERIFICATION REPORT with Grade, Checks, Gaps.
 
 ### Step 4: Debug Loop (Max 3 iterations)
 
-Spawn a fresh sub-agent:
+Spawn a fresh sub-agent using `sessions_spawn`:
 
 ```
 DEBUGGER MISSION - Phase {N} - Iteration {I}
