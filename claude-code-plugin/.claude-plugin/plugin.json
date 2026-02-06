@@ -1,0 +1,11 @@
+{
+  "name": "ftw",
+  "version": "1.0.0",
+  "description": "First Try Works — multi-agent context engineering workflow that ships working code on the first try. Plan-Implement-Validate with independent validation loops.",
+  "author": {
+    "name": "smoke"
+  },
+  "homepage": "https://github.com/SmokeAlot420/ftw",
+  "license": "MIT",
+  "keywords": ["piv", "workflow", "planning", "implementation", "validation", "prp", "prd"]
+}
