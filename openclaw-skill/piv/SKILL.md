@@ -3,16 +3,7 @@ name: piv
 description: PIV workflow orchestrator - Plan, Implement, Validate loop for systematic multi-phase software development. Use when building features phase-by-phase with PRPs, automated validation loops, or multi-agent orchestration. Supports PRD creation, PRP generation, codebase analysis, and iterative execution with validation.
 user-invocable: true
 disable-model-invocation: true
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "gear",
-        "homepage": "https://github.com/SmokeAlot420/ftw",
-        "requires": { "bins": ["git"] },
-        "os": ["darwin", "linux"],
-      },
-  }
+metadata: {"openclaw":{"emoji":"gear","homepage":"https://github.com/SmokeAlot420/ftw","requires":{"bins":["git"]},"os":["darwin","linux"]}}
 ---
 
 # PIV Ralph Orchestrator
@@ -62,12 +53,12 @@ Else:
 
 | Role | Instructions |
 |------|-------------|
-| PRD Creation | Read references/create-prd.md |
-| PRP Generation | Read references/generate-prp.md |
-| Codebase Analysis | Read references/codebase-analysis.md |
-| Executor | Read references/piv-executor.md + references/execute-prp.md |
-| Validator | Read references/piv-validator.md |
-| Debugger | Read references/piv-debugger.md |
+| PRD Creation | Read {baseDir}/references/create-prd.md |
+| PRP Generation | Read {baseDir}/references/generate-prp.md |
+| Codebase Analysis | Read {baseDir}/references/codebase-analysis.md |
+| Executor | Read {baseDir}/references/piv-executor.md + {baseDir}/references/execute-prp.md |
+| Validator | Read {baseDir}/references/piv-validator.md |
+| Debugger | Read {baseDir}/references/piv-debugger.md |
 
 **Prerequisite:** A PRD must exist. If none found, tell user to create one first.
 
@@ -89,8 +80,8 @@ If the project doesn't have PIV directories, create them:
 ```bash
 mkdir -p PROJECT_PATH/PRDs PROJECT_PATH/PRPs/templates PROJECT_PATH/PRPs/planning
 ```
-Copy `assets/prp_base.md` to `PROJECT_PATH/PRPs/templates/prp_base.md` if it doesn't exist.
-Create `PROJECT_PATH/WORKFLOW.md` from `assets/workflow-template.md` if it doesn't exist.
+Copy `{baseDir}/assets/prp_base.md` to `PROJECT_PATH/PRPs/templates/prp_base.md` if it doesn't exist.
+Create `PROJECT_PATH/WORKFLOW.md` from `{baseDir}/assets/workflow-template.md` if it doesn't exist.
 
 ---
 
@@ -118,11 +109,11 @@ PRD Path: {PRD_PATH}
 {paste phase scope}
 
 ## Step 1: Codebase Analysis
-Read references/codebase-analysis.md for the process.
+Read {baseDir}/references/codebase-analysis.md for the process.
 Save to: {PROJECT_PATH}/PRPs/planning/{PRD_NAME}-phase-{N}-analysis.md
 
 ## Step 2: Generate PRP (analysis context still loaded)
-Read references/generate-prp.md for the process.
+Read {baseDir}/references/generate-prp.md for the process.
 Use template: PRPs/templates/prp_base.md
 Output to: {PROJECT_PATH}/PRPs/PRP-{PRD_NAME}-phase-{N}.md
 
@@ -137,8 +128,8 @@ Spawn a fresh sub-agent using `sessions_spawn`:
 EXECUTOR MISSION - Phase {N}
 ============================
 
-Read references/piv-executor.md for your role definition.
-Read references/execute-prp.md for the execution process.
+Read {baseDir}/references/piv-executor.md for your role definition.
+Read {baseDir}/references/execute-prp.md for the execution process.
 
 PRP Path: {PRP_PATH}
 Project: {PROJECT_PATH}
@@ -155,7 +146,7 @@ Spawn a fresh sub-agent using `sessions_spawn`:
 VALIDATOR MISSION - Phase {N}
 =============================
 
-Read references/piv-validator.md for your validation process.
+Read {baseDir}/references/piv-validator.md for your validation process.
 
 PRP Path: {PRP_PATH}
 Project: {PROJECT_PATH}
@@ -175,7 +166,7 @@ Spawn a fresh sub-agent using `sessions_spawn`:
 DEBUGGER MISSION - Phase {N} - Iteration {I}
 ============================================
 
-Read references/piv-debugger.md for your debugging methodology.
+Read {baseDir}/references/piv-debugger.md for your debugging methodology.
 
 Project: {PROJECT_PATH}
 PRP Path: {PRP_PATH}

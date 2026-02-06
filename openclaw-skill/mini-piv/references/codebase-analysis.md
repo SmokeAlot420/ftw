@@ -33,7 +33,7 @@ Perform comprehensive codebase analysis to support PRP creation. This analysis p
 **Objective:** Find existing patterns and implementations relevant to the requested feature.
 
 1. **Pattern Search**
-   - Search for similar features or patterns in the codebase using Grep
+   - Search for similar features or patterns in the codebase using grep
    - Identify 2-3 reference implementations to follow
    - Note naming conventions used throughout the project
 
