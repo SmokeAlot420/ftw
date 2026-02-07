@@ -40,7 +40,7 @@ If you find a bug in a distribution copy, fix it in `shared/` first, then propag
 | Concern | Claude Code (`claude-code-plugin/`) | OpenClaw (`openclaw-skill/`) |
 |---------|-------------------------------------|------------------------------|
 | Sub-agent spawning | `Task` tool with `subagent_type` param | `sessions_spawn` tool |
-| Tool names | `Read, Write, Edit, Bash, Glob, Grep` (capitalized) | `read, write, edit, exec, grep, find` (lowercase) |
+| Tool names | `Read, Write, Edit, Bash, Glob, Grep` (capitalized) | `read, write, edit, exec` (lowercase) |
 | Path resolution | Relative (framework resolves from skill dir) | `{baseDir}/` prefix (runtime variable) |
 | Agent definitions | Separate `agents/` dir, YAML frontmatter (`name`, `description`, `tools`, `model: inherit`) | Inline as `references/` files, no frontmatter (plain markdown) |
 | Metadata | `.claude-plugin/plugin.json` at plugin root | SKILL.md frontmatter with single-line JSON5 `metadata` field |

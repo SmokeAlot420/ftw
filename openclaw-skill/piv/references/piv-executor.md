@@ -23,7 +23,7 @@ You will receive:
 For each requirement:
 1. Implement the code/changes
 2. Follow project patterns (check CLAUDE.md if exists)
-3. Use the available tools (read, write, edit, exec, grep, find)
+3. Use the available tools (read, write, edit, exec) to implement changes and run commands
 
 ### 3. Run Validation Commands
 Based on project type, run appropriate commands:
