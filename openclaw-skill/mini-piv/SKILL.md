@@ -155,11 +155,17 @@ Read {baseDir}/references/execute-prp.md for the execution process.
 PRP: {PROJECT_PATH}/PRPs/mini-{FEATURE_NAME}.md
 Project: {PROJECT_PATH}
 
-Follow: Load PRP → ULTRATHINK → Execute → Validate → Verify
+Follow: Load PRP → Plan Thoroughly → Execute → Validate → Verify
 Output EXECUTION SUMMARY.
 ```
 
 ---
+
+## Validation Sizing Decision
+
+Before spawning a full validator, assess:
+- **<5 files changed, <100 lines, no external APIs** → Quick validation (review changes yourself as orchestrator)
+- **Otherwise** → Spawn full validator sub-agent (Step 4)
 
 ## Step 4: Spawn VALIDATOR
 
@@ -218,7 +224,7 @@ git commit -m "feat(mini): implement {FEATURE_NAME}
 
 Built via Mini PIV Ralph
 
-Co-Authored-By: Claude <noreply@anthropic.com>"
+Built with FTW (First Try Works) - https://github.com/SmokeAlot420/ftw"
 ```
 
 ---
@@ -252,6 +258,12 @@ All requirements verified and passing.
 - **Executor BLOCKED**: Ask user for guidance
 - **Validator HUMAN_NEEDED**: Ask user for guidance
 - **3 debug cycles exhausted**: Escalate with persistent issues list
+
+### Sub-Agent Timeout/Failure
+When a sub-agent times out or fails:
+1. Check for partial work (files created, tests written)
+2. Retry once with a simplified, shorter prompt
+3. If retry fails, escalate to user with what was accomplished
 
 ---
 

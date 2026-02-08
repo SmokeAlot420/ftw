@@ -19,35 +19,30 @@ Create a comprehensive PRP that enables **one-pass implementation success** thro
 - Start by invoking the codebase-analysis subagent if this is a new feature or bugfix in an existing project, then read the markdown file it produces in the PRPs/planning folder.
 - When invoking the codebase analysis subagent, prompt it to research the codebase for the specific feature being implemented.
 
-> During the research process, create clear tasks and spawn as many agents and subagents as needed using the batch tools. The deeper research we do here the better the PRP will be. we optminize for chance of success and not for speed.
+> During the research process, create clear tasks and spawn sub-agents to research in parallel. The deeper research we do here the better the PRP will be. We optimize for chance of success, not speed.
 
 1. **Codebase Analysis in depth**
-   - Create clear todos and spawn subagents to search the codebase for similar features/patterns Think hard and plan your approach
+   - Spawn sub-agents to search the codebase for similar features/patterns
    - Identify all the necessary files to reference in the PRP
    - Note all existing conventions to follow
    - Check existing test patterns for validation approach
-   - Use the batch tools to spawn subagents to search the codebase for similar features/patterns
 
 2. **External Research at scale**
-   - Create clear todos and spawn with instructions subagents to do deep research for similar features/patterns online and include urls to documentation and examples
+   - Spawn sub-agents to do deep research for similar features/patterns online
    - Library documentation (include specific URLs)
    - For critical pieces of documentation add a .md file to PRPs/ai_docs and reference it in the PRP with clear reasoning and instructions
    - Implementation examples (GitHub/StackOverflow/blogs)
    - Best practices and common pitfalls found during research
-   - Use the batch tools to spawn subagents to search for similar features/patterns online and include urls to documentation and examples
 
-   ### Research Tools (USE THESE)
+   ### Research Tools (If Available)
+   Use whatever research tools your platform provides:
+   - **Web search** — for documentation, tutorials, examples
+   - **Shell/command runner** — use `gh` CLI for GitHub code search, repo exploration
+   - **File search** — search the codebase for patterns, similar implementations
 
-   When researching, leverage ALL available tools:
+   **If specific tools are unavailable**, rely on PRP context and your training knowledge. Do not block on missing tools.
 
-   | Tool | Best For | Example |
-   |------|----------|---------|
-   | **Web Search** | General web queries, docs, tutorials | "Next.js 14 app router patterns" |
-   | **GitHub CLI** | Find repos, code examples, issues | `gh search repos "wagmi bonding curve"` |
-   | **GitHub CLI** | View specific repos | `gh repo view owner/repo --json description,readme` |
-   | **GitHub CLI** | Search code patterns | `gh search code "pattern" --repo owner/repo` |
-
-   **Priority:** GitHub CLI for code > Web search for concepts > Web fetch for specific URLs
+   **Priority:** Codebase search for patterns > GitHub CLI for code examples > Web search for concepts
 
 3. **User Clarification**
    - Ask for clarification if you need it
@@ -81,9 +76,9 @@ Ensure every reference is **specific and actionable**:
 - Task specifications include exact naming conventions and placement
 - Validation commands are project-specific and executable
 
-### Step 5: ULTRATHINK Before Writing
+### Step 5: Plan Thoroughly Before Writing
 
-After research completion, create comprehensive PRP writing plan using TaskCreate tool:
+After research completion, create a comprehensive PRP writing plan:
 
 - Plan how to structure each template section with your research findings
 - Identify gaps that need additional research

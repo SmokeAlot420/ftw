@@ -10,7 +10,7 @@ Write the PRD to: `$ARGUMENTS` (default: `PRD.md`)
 
 ## PRD Structure
 
-Create a well-structured PRD with the following sections. Adapt depth and detail based on available information:
+Create a well-structured PRD with the following sections. Adapt depth and detail based on discovery answers and available information:
 
 ### Required Sections
 
@@ -91,6 +91,32 @@ Create a well-structured PRD with the following sections. Adapt depth and detail
 - Key dependencies with links
 - Repository/project structure
 
+## Discovery Phase (Before Writing)
+
+Before generating the PRD, gather key information through quick discovery questions.
+If the user hasn't provided enough context, ask:
+
+### Required Discovery
+1. **What are you building?** Quick description of the product/feature.
+2. **What model/platform are you using?** (e.g., Kimi K2.5, Claude Opus, OpenAI o3, GPT-5.2, local model)
+   - This determines context window limits and sub-agent sizing
+3. **What's the target tech stack?** Languages, frameworks, key libraries.
+4. **Any existing codebase?** If yes, what's the repo/path?
+
+### Optional Discovery (ask if unclear)
+5. **Who are the users?** Target audience description.
+6. **What does "done" look like?** 1-3 success criteria.
+7. **What's explicitly OUT of scope?** Features to defer.
+
+### Model Context Awareness
+Record the model and its context window in the PRD metadata:
+- Kimi K2.5: 131K tokens
+- Claude Opus/Sonnet: 200K tokens
+- OpenAI o3/GPT-5.2: varies
+- Local models: check config
+
+This info propagates to PRP generation and sub-agent prompt sizing.
+
 ## Instructions
 
 ### 1. Extract Requirements
@@ -138,6 +164,7 @@ After creating the PRD:
 
 ## Notes
 
+- Ask discovery questions if the user starts with minimal context — don't assume
 - If critical information is missing, ask clarifying questions before generating
 - Adapt section depth based on available details
 - For highly technical products, emphasize architecture and technical stack

@@ -29,7 +29,7 @@ For EACH requirement, check the actual codebase:
 ```
 Requirement: "Add buy() function to contract"
 Verification:
-- [ ] Function exists in file? (grep/read)
+- [ ] Function exists in file? (search the file / read the code)
 - [ ] Signature matches spec?
 - [ ] Has proper access modifiers?
 - [ ] Has security guards if needed?
@@ -86,7 +86,7 @@ Verification:
 ## Key Rules
 
 1. **Trust nothing, verify everything** - The executor may have missed things or misreported
-2. **Check actual files** - grep for functions, read implementations, don't assume
+2. **Check actual files** - Search for functions in the codebase, read implementations directly
 3. **Run tests yourself** - Test results from executor are claims, not facts
 4. **Be specific about gaps** - Vague "needs improvement" isn't actionable
 5. **Grade strictly but fairly** - Missing a small detail != total failure

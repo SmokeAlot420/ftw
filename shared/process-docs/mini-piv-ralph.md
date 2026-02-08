@@ -23,6 +23,12 @@ Mini PIV Ralph is the lightweight sibling of the full PIV Ralph orchestrator. Sa
 5. **Debug Loop** - Fix gaps (max 3 iterations)
 6. **Commit** - Semantic commit on success
 
+## Validation Sizing
+
+Choose validation depth based on change scope:
+- **Quick validation** (orchestrator verifies directly): <5 files changed, <100 lines, no external integrations
+- **Full validation** (spawn validator sub-agent): 5+ files, 100+ lines, external APIs, security-sensitive code
+
 ## Discovery Questions
 
 Default question set (adapt based on feature type):

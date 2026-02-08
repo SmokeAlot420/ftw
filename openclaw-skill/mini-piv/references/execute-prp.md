@@ -22,22 +22,20 @@ PRPs enable working code on the first attempt through:
    - If needed do additional codebase exploration and research as needed
 
    ### Research Tools (If Stuck or Need More Context)
+   Use whatever research tools your platform provides:
+   - **Web search** — for documentation, tutorials, examples
+   - **Shell/command runner** — use `gh` CLI for GitHub code search, repo exploration
+   - **File search** — search the codebase for patterns, similar implementations
 
-   When you need additional research, leverage ALL available tools:
+   **If specific tools are unavailable**, rely on PRP context and your training knowledge. Do not block on missing tools.
 
-   | Tool | Best For | Example |
-   |------|----------|---------|
-   | **Web Search** | General web queries, docs, tutorials | "Next.js 14 app router patterns" |
-   | **GitHub CLI** | Find repos, code examples, issues | `gh search repos "wagmi bonding curve"` |
-   | **GitHub CLI** | View specific repos | `gh repo view owner/repo --json description,readme` |
-   | **GitHub CLI** | Search code patterns | `gh search code "pattern" --repo owner/repo` |
+   **Priority:** Codebase search for patterns > GitHub CLI for code examples > Web search for concepts
 
-   **Priority:** GitHub CLI for code > Web search for concepts > Web fetch for specific URLs
-
-2. **ULTRATHINK & Plan**
+2. **Think Deeply & Plan**
    - Create comprehensive implementation plan following the PRP's task order
-   - Break down into clear tasks and track progress as you work through each one
+   - Break down into clear tasks and track your progress systematically
    - Follow the patterns referenced in the PRP
+   - Work through each task systematically, verifying as you go
    - Use specific file paths, class names, and method signatures from PRP context
    - Never guess - always verify the codebase patterns and examples referenced in the PRP yourself
 

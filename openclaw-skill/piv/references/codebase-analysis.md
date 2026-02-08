@@ -13,7 +13,7 @@ Perform comprehensive codebase analysis to support PRP creation. This analysis p
 **Objective:** Map the project layout and understand the overall architecture.
 
 1. **Project Layout Analysis**
-   - Run `tree -L 3 -I 'node_modules|.git|dist|build|__pycache__|.next'` to map project structure
+   - Run `tree -L 3 -I 'node_modules|.git|dist|build|__pycache__|.next'` if available, otherwise use `ls -la` or equivalent directory listing
    - Identify entry points (main files, index files, app entry points)
    - Locate configuration files (package.json, pyproject.toml, tsconfig.json, foundry.toml, etc.)
    - Map the directory organization pattern (feature-based, layer-based, etc.)
@@ -33,7 +33,7 @@ Perform comprehensive codebase analysis to support PRP creation. This analysis p
 **Objective:** Find existing patterns and implementations relevant to the requested feature.
 
 1. **Pattern Search**
-   - Search for similar features or patterns in the codebase using grep
+   - Search for similar features or patterns by searching the codebase
    - Identify 2-3 reference implementations to follow
    - Note naming conventions used throughout the project
 
@@ -152,6 +152,6 @@ Before completing, verify:
 This process can be invoked:
 1. **Directly**: As a standalone codebase analysis task
 2. **Via generate-prp**: Referenced during PRP generation
-3. **Via sessions_spawn**: Spawn as sub-agent for research
+3. **As a sub-agent**: Spawned for parallel research by the orchestrator
 
 The analysis output feeds directly into PRP creation, providing the context needed for one-pass implementation success.

@@ -100,21 +100,6 @@ After fixes, verify they work:
 
 ## Debugging Tips
 
-### For Test Failures
-1. Read the full error message
-2. Find the test that's failing
-3. Understand what it expects vs what happens
-4. Trace back to the source code
-5. Fix the source, not the test (usually)
-
-### For Build Errors
-1. Start with the first error (later ones may cascade)
-2. Check imports/dependencies
-3. Check type mismatches
-4. Check syntax errors
-
-### For Missing Features
-1. Re-read the PRP requirement
-2. Check if partially implemented
-3. Implement the missing piece
-4. Add tests if missing
+- **Test failures**: Read full error → find failing test → trace to source code → fix source (not test)
+- **Build errors**: Start with first error (later ones cascade) → check imports, types, syntax
+- **Missing features**: Re-read PRP requirement → check if partially implemented → add missing piece + tests

@@ -26,22 +26,22 @@ For each requirement:
 3. Use the available tools (read, write, edit, exec) to implement changes and run commands
 
 ### 3. Run Validation Commands
-Based on project type, run appropriate commands:
 
-**Solidity/Foundry:**
-```bash
-cd PROJECT_PATH/contracts && forge build && forge test -vvv && forge fmt --check
-```
+Detect project type and run appropriate validation:
 
-**Next.js/TypeScript:**
-```bash
-cd PROJECT_PATH/frontend && pnpm build && pnpm lint
-```
+1. **Check for config files** to determine project type:
+   - `package.json` → Node.js/TypeScript (npm/pnpm/yarn)
+   - `pyproject.toml` / `requirements.txt` → Python
+   - `foundry.toml` → Solidity/Foundry
+   - `Cargo.toml` → Rust
+   - `go.mod` → Go
+   - `Makefile` → Check Makefile targets
 
-**Python:**
-```bash
-cd PROJECT_PATH && ruff check --fix && pytest tests/ -v
-```
+2. **Use PRP-specified commands first** — the PRP's Validation Loop section has project-specific commands
+
+3. **Verify commands exist before running** — use `command -v` or `which` to check tool availability
+
+4. **If a tool is missing**, report it clearly rather than failing silently
 
 ### 4. Create Execution Summary
 

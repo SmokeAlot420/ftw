@@ -134,6 +134,9 @@ Use `sessions_spawn` tool. Each spawn is non-blocking — results arrive via an 
 5. **Templates in `assets/`** — PRP templates, workflow templates go in assets
 6. **Each skill is self-contained** — bundle all needed references and assets within the skill directory
 7. **Sub-agents get fresh context** — orchestrator stays lean (~15% context), sub-agents get 100% fresh
+8. **Model-agnostic language** — never hardcode Claude-specific tool names or terminology in shared/ or process docs; use generic descriptions (e.g., "search the codebase" not "use Grep")
+9. **No ULTRATHINK** — use "Plan Thoroughly" or "Think Deeply" instead (model-neutral phrasing)
+10. **FTW branding in commits** — use `Built with FTW (First Try Works)` not `Co-Authored-By: Claude`
 
 ## Skills Reference
 
@@ -171,6 +174,17 @@ claude --plugin-dir ./claude-code-plugin
 4. **Verify both slices** — check that references resolve, paths are correct, tool names match platform conventions
 5. **Commit** — single commit covering shared + both distribution targets
 
+## Model-Agnostic Design
+
+FTW is designed to work across models (Claude, Kimi K2.5, OpenAI o3, GPT-5.2, local models). Key rules:
+
+- **shared/ must be model-agnostic** — no Claude-specific tool names (`Grep`, `Read`), no `ULTRATHINK`, no `TaskCreate`
+- **Platform-specific tool names only in SKILL.md** and agent frontmatter (Claude Code agents list `Read, Write, Edit, Bash, Glob, Grep` in YAML)
+- **OpenClaw piv-executor.md** uses `(read, write, edit, exec)` — the only file with platform-specific tool names in references/
+- **PRD discovery questions** capture model/context window info — propagates to PRP generation and sub-agent sizing
+- **Environment Check** in prp_base.md records model, project type, and verified commands
+- **Validation sizing** in mini-piv: <5 files/<100 lines → orchestrator validates; otherwise → spawn validator sub-agent
+
 ## AI Instructions
 
 When working on this repo:
@@ -181,6 +195,7 @@ When working on this repo:
 - **Respect the platform table** — tool names, paths, spawning mechanisms, and metadata formats differ between Claude Code and OpenClaw
 - **No hardcoded paths** — use relative resolution (Claude Code) or `{baseDir}/` (OpenClaw)
 - **Keep SKILL.md under 500 lines** — move heavy content to `references/`
+- **Model-agnostic shared/** — never use Claude-specific tool names or terminology in shared/ files
 - **`context: fork` has known bugs in OpenClaw** (#17283) — do not rely on it; design skills to work without it
 - **Sub-agents cannot spawn sub-agents** — flat hierarchy only in both platforms
 - **Test both entry points** — `/piv` (full) and `/mini-piv` (lightweight) after any workflow changes

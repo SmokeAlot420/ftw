@@ -153,7 +153,7 @@ PRP Path: {PRP_PATH}
 Project: {PROJECT_PATH}
 
 Read the PRP execution process doc at references/execute-prp.md, then execute the PRP.
-Follow: Load PRP → ULTRATHINK → Execute → Validate → Verify
+Follow: Load PRP → Plan Thoroughly → Execute → Validate → Verify
 Output EXECUTION SUMMARY with Status, Files, Tests, Issues.
 ```
 
@@ -214,7 +214,7 @@ git diff --stat
 
 Create semantic commit:
 - Format: `feat/fix/refactor(scope): description`
-- Add: `Co-Authored-By: Claude <noreply@anthropic.com>`
+- Add: `Built with FTW (First Try Works) - https://github.com/SmokeAlot420/ftw`
 
 ### Step 6: Update Progress
 
@@ -243,6 +243,12 @@ Ask user: "Validator needs guidance on phase N. Question: [details]. Please advi
 
 ### 3 Debug Cycles Exhausted
 Ask user: "Phase N failed validation after 3 fix attempts. Persistent issues: [list]. Need your guidance."
+
+### Sub-Agent Timeout/Failure
+When a sub-agent times out or fails:
+1. Check for partial work (files created, tests written)
+2. Retry once with a simplified, shorter prompt
+3. If retry fails, escalate to user with what was accomplished
 
 ---
 

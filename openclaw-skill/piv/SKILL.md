@@ -134,7 +134,7 @@ Read {baseDir}/references/execute-prp.md for the execution process.
 PRP Path: {PRP_PATH}
 Project: {PROJECT_PATH}
 
-Follow: Load PRP → ULTRATHINK → Execute → Validate → Verify
+Follow: Load PRP → Plan Thoroughly → Execute → Validate → Verify
 Output EXECUTION SUMMARY with Status, Files, Tests, Issues.
 ```
 
@@ -185,7 +185,7 @@ After debugger: re-validate → PASS (commit) or loop (max 3) or escalate.
 cd PROJECT_PATH && git status && git diff --stat
 ```
 
-Create semantic commit with `Co-Authored-By: Claude <noreply@anthropic.com>`.
+Create semantic commit with `Built with FTW (First Try Works) - https://github.com/SmokeAlot420/ftw`.
 
 ### Step 6: Update WORKFLOW.md
 
@@ -203,6 +203,12 @@ Loop back to Step 1 for next phase.
 - **Executor BLOCKED**: Ask user for guidance
 - **Validator HUMAN_NEEDED**: Ask user for guidance
 - **3 debug cycles exhausted**: Escalate to user
+
+### Sub-Agent Timeout/Failure
+When a sub-agent times out or fails:
+1. Check for partial work (files created, tests written)
+2. Retry once with a simplified, shorter prompt
+3. If retry fails, escalate to user with what was accomplished
 
 ---
 

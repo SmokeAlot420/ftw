@@ -9,7 +9,7 @@ Template optimized for AI agents to implement features with sufficient context a
 2. **Validation Loops**: Provide executable tests/lints the AI can run and fix
 3. **Information Dense**: Use keywords and patterns from the codebase
 4. **Progressive Success**: Start simple, validate, then enhance
-5. **Global rules**: Be sure to follow all rules in CLAUDE.md
+5. **Global rules**: Follow any project-level configuration files (CLAUDE.md, AGENTS.md, .cursorrules, etc.)
 
 ---
 
@@ -45,6 +45,17 @@ Template optimized for AI agents to implement features with sufficient context a
 - docfile: [PRPs/ai_docs/file.md]
   why: [docs that the user has pasted in to the project]
 
+```
+
+### Environment Check
+```yaml
+# Verify these tools exist before planning validation
+model: [model name and context window, e.g., "Kimi K2.5 (131K)" or "Claude Opus (200K)"]
+project_type: [detected from config files]
+test_command: [verified working, e.g., "pytest", "pnpm test", "forge test"]
+lint_command: [verified working, e.g., "ruff check", "eslint", "forge fmt --check"]
+type_check: [if applicable, e.g., "mypy", "tsc --noEmit"]
+build_command: [if applicable, e.g., "pnpm build", "forge build"]
 ```
 
 ### Current Codebase tree (run `tree` in the root of the project) to get an overview of the codebase
@@ -142,6 +153,9 @@ ROUTES:
 
 ### Level 1: Syntax & Style
 ```bash
+# Pre-flight: Verify commands exist before running
+# command -v <tool> or which <tool> — report missing tools, don't fail silently
+
 # Run these FIRST - fix any errors before proceeding
 # Run your project's linter: e.g., ruff check, eslint, golangci-lint
 # Run your project's type checker: e.g., mypy, tsc --noEmit, go vet
