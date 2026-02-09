@@ -45,6 +45,12 @@ Else:
   PRD_NAME = discovered PRD basename
 ```
 
+### Mode Detection
+
+After parsing arguments:
+- If PRD_PATH was provided or auto-discovered → **MODE = "execute"** (normal flow)
+- If no PRD found and no PRD_PATH provided → **MODE = "discovery"**
+
 ### Auto-Detect Phases from PRD
 
 When PRD_PATH is specified, scan the PRD for phase sections:
@@ -59,6 +65,7 @@ When PRD_PATH is specified, scan the PRD for phase sections:
 
 | Role | Instructions |
 |------|-------------|
+| Discovery (no PRD) | Read references/piv-discovery.md |
 | PRD Creation (if needed) | Read references/create-prd.md |
 | Orchestrator (PRP Generation) | Read references/generate-prp.md |
 | Executor | Use the piv-executor agent + Read references/execute-prp.md |
@@ -67,7 +74,28 @@ When PRD_PATH is specified, scan the PRD for phase sections:
 
 **DO NOT wing it. Follow the established processes.**
 
-**Prerequisite:** A PRD must exist before running PIV Ralph. If no PRD exists, tell the user to create one first.
+**Prerequisite:** A PRD must exist before entering the Phase Workflow. If no PRD exists, the orchestrator enters Discovery Mode (see below).
+
+---
+
+## Discovery Mode (No PRD Found)
+
+When MODE = "discovery":
+
+1. Read references/piv-discovery.md for the discovery process
+2. Present discovery questions to the user in a friendly, conversational tone (single message)
+   - Target audience is vibe coders, not senior engineers — keep it approachable
+   - Skip questions the user already answered in their initial message
+3. Wait for user answers
+4. Fill gaps with your own expertise:
+   - If user doesn't know tech stack → research (web search, codebase scan) and PROPOSE one
+   - If user can't define phases → propose 3-4 phases based on scope
+   - Always propose-and-confirm: "Here's what I'd suggest — does this sound right?"
+5. Run project setup (create PRDs/, PRPs/templates/, PRPs/planning/)
+6. Generate PRD: Read references/create-prd.md, use discovery answers + your proposals to write PRD to PROJECT_PATH/PRDs/PRD-{project-name}.md
+7. Set PRD_PATH to the generated PRD, auto-detect phases → continue to Phase Workflow
+
+The orchestrator handles discovery and PRD generation directly (no sub-agent needed — interactive Q&A requires staying in the same session, and answers are already in context for PRD generation).
 
 ---
 
@@ -233,7 +261,7 @@ Increment phase counter. If more phases remain, loop back to Step 1.
 
 ### No PRD Found
 If no PRD exists in `PROJECT_PATH/PRDs/`:
-- Tell user: "No PRD found. Please create one first, then re-run PIV."
+- Enter Discovery Mode (see Discovery Mode section above).
 
 ### Executor Returns BLOCKED
 Ask user: "Executor blocked on phase N. Issue: [description]. How should we proceed?"
@@ -276,16 +304,21 @@ All phases successfully implemented and validated.
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│              PIV RALPH ORCHESTRATOR                        │
+│              PIV RALPH ORCHESTRATOR                       │
 ├──────────────────────────────────────────────────────────┤
-│ FOR EACH PHASE (START_PHASE to END_PHASE):                │
-│   a. Check if PRP exists                                  │
-│   b. If not → spawn RESEARCH AGENT (analysis + PRP gen)   │
-│   c. Spawn EXECUTOR → EXECUTION SUMMARY                   │
-│   d. Spawn VALIDATOR → PASS / GAPS_FOUND / HUMAN_NEEDED   │
-│   e. If GAPS_FOUND → Spawn DEBUGGER (max 3x)              │
-│   f. Commit on PASS                                       │
-│   g. Update WORKFLOW.md                                   │
-│   h. Next phase                                           │
+│ IF NO PRD FOUND:                                         │
+│   a. Ask discovery questions (piv-discovery.md)          │
+│   b. Generate PRD from answers (create-prd.md)           │
+│   c. Set PRD_PATH, auto-detect phases                    │
+│                                                          │
+│ FOR EACH PHASE (START_PHASE to END_PHASE):               │
+│   a. Check if PRP exists                                 │
+│   b. If not → spawn RESEARCH AGENT (analysis + PRP gen)  │
+│   c. Spawn EXECUTOR → EXECUTION SUMMARY                  │
+│   d. Spawn VALIDATOR → PASS / GAPS_FOUND / HUMAN_NEEDED  │
+│   e. If GAPS_FOUND → Spawn DEBUGGER (max 3x)             │
+│   f. Commit on PASS                                      │
+│   g. Update WORKFLOW.md                                  │
+│   h. Next phase                                          │
 └──────────────────────────────────────────────────────────┘
 ```

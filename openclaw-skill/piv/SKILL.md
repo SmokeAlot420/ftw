@@ -45,6 +45,12 @@ Else:
   PRD_NAME = discovered PRD basename
 ```
 
+### Mode Detection
+
+After parsing arguments:
+- If PRD_PATH was provided or auto-discovered → **MODE = "execute"** (normal flow)
+- If no PRD found and no PRD_PATH provided → **MODE = "discovery"**
+
 ---
 
 ## Required Reading by Role
@@ -53,6 +59,7 @@ Else:
 
 | Role | Instructions |
 |------|-------------|
+| Discovery (no PRD) | Read {baseDir}/references/piv-discovery.md |
 | PRD Creation | Read {baseDir}/references/create-prd.md |
 | PRP Generation | Read {baseDir}/references/generate-prp.md |
 | Codebase Analysis | Read {baseDir}/references/codebase-analysis.md |
@@ -60,7 +67,28 @@ Else:
 | Validator | Read {baseDir}/references/piv-validator.md |
 | Debugger | Read {baseDir}/references/piv-debugger.md |
 
-**Prerequisite:** A PRD must exist. If none found, tell user to create one first.
+**Prerequisite:** A PRD must exist before entering the Phase Workflow. If no PRD exists, the orchestrator enters Discovery Mode (see below).
+
+---
+
+## Discovery Mode (No PRD Found)
+
+When MODE = "discovery":
+
+1. Read {baseDir}/references/piv-discovery.md for the discovery process
+2. Present discovery questions to the user in a friendly, conversational tone (single message)
+   - Target audience is vibe coders, not senior engineers — keep it approachable
+   - Skip questions the user already answered in their initial message
+3. Wait for user answers
+4. Fill gaps with your own expertise:
+   - If user doesn't know tech stack → research (web search, codebase scan) and PROPOSE one
+   - If user can't define phases → propose 3-4 phases based on scope
+   - Always propose-and-confirm: "Here's what I'd suggest — does this sound right?"
+5. Run project setup (create PRDs/, PRPs/templates/, PRPs/planning/)
+6. Generate PRD: Read {baseDir}/references/create-prd.md, use discovery answers + your proposals to write PRD to PROJECT_PATH/PRDs/PRD-{project-name}.md
+7. Set PRD_PATH to the generated PRD, auto-detect phases → continue to Phase Workflow
+
+The orchestrator handles discovery and PRD generation directly (no sub-agent needed — interactive Q&A requires staying in the same session, and answers are already in context for PRD generation).
 
 ---
 
@@ -199,7 +227,7 @@ Loop back to Step 1 for next phase.
 
 ## Error Handling
 
-- **No PRD**: Tell user to create one first
+- **No PRD**: Enter Discovery Mode (see Discovery Mode section above)
 - **Executor BLOCKED**: Ask user for guidance
 - **Validator HUMAN_NEEDED**: Ask user for guidance
 - **3 debug cycles exhausted**: Escalate to user
